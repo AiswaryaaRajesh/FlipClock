@@ -105,7 +105,7 @@ function setUserActive() {
   clearTimeout(userActiveTimeout);
   userActiveTimeout = setTimeout(() => {
     document.body.classList.remove("user-active");
-  }, 30000); // 3 seconds
+  }, 5000); // 5 seconds
 }
 
 // Mouse or touch triggers UI
