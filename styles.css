@@ -1,0 +1,275 @@
+/* BASIC STYLES */
+body {
+  background-color: #0b0b0b !important;
+  margin: 0;
+  padding-bottom: 60px; /* Give space so content doesn't overlap with footer */
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*small screen 
+@media screen and (max-width: 992px)*/
+@media screen and (max-width: 576px){
+  .container{
+    margin-top: -3.5rem;
+  }
+  
+  .flip-card {
+    width: 4rem;
+    height: 10rem;
+    border-radius: 8px;
+  }
+  
+  .flip-card .bottom,
+  .flip-card .flip-bt,
+  .flip-card .flip-top,
+  .flip-card .flip-bottom {
+    font-size: 3rem;
+  }
+
+  .separator {
+    font-size: 3rem;
+    padding-top: 4rem;
+  }
+
+  /* .d-sec{
+    display: none;
+  } */
+}
+
+/*Medium Screen
+@media only screen and (min-width: 600px)*/ 
+@media screen and (min-width: 577px) and (max-width: 1023px){
+  .container{
+    margin-top: -6rem;
+  }
+  
+  .flip-card {
+    width: 10rem;
+    height: 20rem;
+    border-radius: 15px;
+  }
+
+  .flip-card .bottom,
+  .flip-card .flip-bt,
+  .flip-card .flip-top,
+  .flip-card .flip-bottom {
+    font-size: 5.2rem;
+  }
+
+  .separator {
+    font-size: 5rem;
+    padding-top: 9rem;
+  }
+
+  /* .d-sec{
+    display: none;
+  } */
+
+}
+
+/* width: 1024 */
+@media screen and (width: 1024px){
+  .container{
+    margin-top: -8rem;
+  }
+
+  .flip-card {
+    width: 13rem;
+    height: 27rem;
+    border-radius: 15px;
+  }
+
+  .flip-card .bottom,
+  .flip-card .flip-bt,
+  .flip-card .flip-top,
+  .flip-card .flip-bottom {
+    font-size: 8rem;
+  }
+
+  .separator {
+    font-size: 6rem;
+    padding-top: 12rem;
+  }
+
+  /* .d-sec{
+    display: block;
+  } */
+}
+
+/*large screen */
+@media screen and (min-width: 1025px) {
+  .container{
+    margin-top: -9rem;
+  }
+
+  .flip-card {
+    width: 16rem;
+    height: 31rem;
+    border-radius: 15px;
+  }
+
+  .flip-card .bottom,
+  .flip-card .flip-bt,
+  .flip-card .flip-top,
+  .flip-card .flip-bottom {
+    font-size: 10rem;
+  }
+
+  .separator {
+    font-size: 6rem;
+    padding-top: 15rem;
+  }
+
+  /* .d-sec{
+    display: block;
+  } */
+}
+
+.separator {
+  font-weight: bold;
+  color: #ffffff;
+  line-height: 90px;
+}
+
+/* FLIP CARD STYLES */
+.flip-card {
+  position: relative;
+  font-weight: bold;
+  font-family: monospace;
+  perspective: 1000px;
+  /* background: #222; */
+  color: #ffffff;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* COMMON STYLES FOR FLIPPING ELEMENTS */
+.flip-card .bottom,
+.flip-card .flip-bt,
+.flip-card .flip-top,
+.flip-card .flip-bottom {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  line-height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #414141;
+  backface-visibility: hidden;
+  font-weight: bold;
+}
+
+/* STATIC BOTTOM (always visible) */
+.flip-card .bottom {
+  bottom: 0;
+  transform: rotateX(0deg);
+  z-index: 1;
+}
+
+/* BOTTOM TO TOP (FIRST FLIP) */
+.flip-card .flip-bt {
+  top: 0;
+  transform-origin: bottom;
+  transform: rotateX(90deg);
+  z-index: 2;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* TOP TO BACK (SECOND FLIP) */
+.flip-card .flip-top {
+  top: 0;
+  transform-origin: bottom;
+  transform: rotateX(0deg);
+  z-index: 3;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* BOTTOM FROM BACK (FINAL FLIP) */
+.flip-card .flip-bottom {
+  bottom: 0;
+  transform-origin: top;
+  transform: rotateX(90deg);
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* SHOW FLIPPING ELEMENTS DURING ANIMATION */
+.flip-card.flipping .flip-bt,
+.flip-card.flipping .flip-top,
+.flip-card.flipping .flip-bottom {
+  opacity: 1;
+  pointer-events: auto;
+  display: flex;
+}
+
+/* ANIMATION ASSIGNMENTS */
+.flip-card.flipping .flip-bt {
+  animation: flipBT 0.2s forwards;
+}
+
+.flip-card.flipping .flip-top {
+  animation: flipTop 0.3s 0.2s forwards;
+}
+
+.flip-card.flipping .flip-bottom {
+  animation: flipBottom 0.5s 0.4s forwards;
+}
+
+/* KEYFRAMES */
+@keyframes flipBT {
+  0% {
+    transform: rotateX(90deg);
+    opacity: 1;
+  }
+  100% {
+    transform: rotateX(0deg);
+    opacity: 0;
+  }
+}
+
+@keyframes flipTop {
+  0% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(-90deg);
+  }
+}
+
+@keyframes flipBottom {
+  0% {
+    transform: rotateX(90deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3rem;
+  color: #919090;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.copyright img{
+  width: 1rem;
+  color: white;
+}
