@@ -1,8 +1,7 @@
-/* BASIC STYLES */
 body {
   background-color: #0b0b0b !important;
   margin: 0;
-  padding-bottom: 60px; /* Give space so content doesn't overlap with footer */
+  padding-bottom: 60px;
 }
 
 .container {
@@ -37,9 +36,10 @@ body {
     padding-top: 4rem;
   }
 
-  /* .d-sec{
-    display: none;
-  } */
+  .fullscreen-icon i {
+    font-size: 1.3rem;
+  }
+
 }
 
 /*Medium Screen
@@ -67,9 +67,9 @@ body {
     padding-top: 9rem;
   }
 
-  /* .d-sec{
-    display: none;
-  } */
+  .fullscreen-icon i {
+    font-size: 1.8rem;
+  }
 
 }
 
@@ -97,9 +97,9 @@ body {
     padding-top: 12rem;
   }
 
-  /* .d-sec{
-    display: block;
-  } */
+  .fullscreen-icon i {
+    font-size: 2rem;
+  }
 }
 
 /*large screen */
@@ -125,10 +125,10 @@ body {
     font-size: 6rem;
     padding-top: 15rem;
   }
-
-  /* .d-sec{
-    display: block;
-  } */
+  
+  .fullscreen-icon i {
+    font-size: 2rem;
+  }
 }
 
 .separator {
@@ -253,6 +253,34 @@ body {
   100% {
     transform: rotateX(0deg);
   }
+}
+
+.fullscreen-icon {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  color: #919090;
+  padding: 10px;
+  border-radius: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.fullscreen-icon i{
+  cursor: pointer;
+}
+
+.fullscreen-icon i:hover{
+  color: #ffffff;
+}
+
+body.user-active .fullscreen-icon {
+  opacity: 1;
+}
+
+.hide-footer footer {
+  display: none !important;
 }
 
 
