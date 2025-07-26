@@ -1,3 +1,4 @@
+// Update Clock ------------------------------------------------------------------------------
 function createCardElement(digit) {
   return `
     <div class="bottom">${digit}</div>
@@ -59,7 +60,7 @@ document.querySelectorAll('.flip-card').forEach(card => {
 // Start clock
 updateClock();
 
-// Automatically update footer year
+// Automatically update footer year ----------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", () => {
   console.log("✅ Script loaded!");
 
@@ -72,44 +73,162 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// Fullscreen Toggle
+// Fullscreen Toggle ------------------------------------------------------------------------------
 const fullscreenToggleIcon = document.getElementById("fullscreen-toggle");
 const footer = document.querySelector("footer");
-const container = document.querySelector(".container");
 
+// Toggle fullscreen on icon click or double-click
 function toggleFullscreen() {
   if (!document.fullscreenElement) {
     document.documentElement.requestFullscreen();
-    document.body.classList.add("hide-footer");
-    // container.classList.add("mt-1");
-    fullscreenToggleIcon.classList.remove("fa-expand");
-    fullscreenToggleIcon.classList.add("fa-compress");
   } else {
     document.exitFullscreen();
-    document.body.classList.remove("hide-footer");
-    // container.classList.remove("mt-1");
-    fullscreenToggleIcon.classList.remove("fa-compress");
-    fullscreenToggleIcon.classList.add("fa-expand");
   }
 }
 
-fullscreenToggleIcon.addEventListener("click", toggleFullscreen);
+// Update UI when fullscreen state changes
+function updateFullscreenUI() {
+  const isFullscreen = !!document.fullscreenElement;
 
-// ✅ Toggle on double click anywhere
+  document.body.classList.toggle("hide-footer", isFullscreen);
+
+  fullscreenToggleIcon.classList.toggle("fa-expand", !isFullscreen);
+  fullscreenToggleIcon.classList.toggle("fa-compress", isFullscreen);
+}
+
+// Bind click and double-click
+fullscreenToggleIcon.addEventListener("click", toggleFullscreen);
 document.addEventListener("dblclick", toggleFullscreen);
 
-// Show icon on interaction
+// Handle Esc or any fullscreen exit
+document.addEventListener("fullscreenchange", updateFullscreenUI);
+
+
+// Digit Based Seconds WORKING-----------------------------------------------------------------------
+function updateSecondsDigits() {
+  const display = document.getElementById("secondsDisplay");
+  const now = new Date();
+  const seconds = now.getSeconds().toString().padStart(2, '0');
+  display.textContent = seconds;
+  display.style.opacity = 1;
+
+  setTimeout(() => {
+    display.style.opacity = 0;
+  }, 800); // hides before next update
+}
+
+setInterval(updateSecondsDigits, 1000);
+
+
+// THEME TOGGLE ------------------------------------------------------------------------------
+const themeToggle = document.getElementById("toggle-seconds-dots");
+const themeLabel = document.getElementById("toggle-seconds-label");
+
+// Apply default dark theme on load
+document.body.classList.add("dark-theme");
+themeLabel.textContent = "Switch to Light Theme"; // since toggling switches to light
+
+// Listen for theme toggle
+themeToggle.addEventListener("change", () => {
+  if (themeToggle.checked) {
+    document.body.classList.remove("dark-theme");
+    document.body.classList.add("light-theme");
+    themeLabel.textContent = "Switch to Dark Theme";
+  } else {
+    document.body.classList.remove("light-theme");
+    document.body.classList.add("dark-theme");
+    themeLabel.textContent = "Switch to Light Theme";
+  }
+});
+
+// HEADER AND OVERLAYS-------------------------------------------------------------------------
+const settingsIcon = document.querySelector('.settings-icon');
+const settingsDropdown = document.getElementById('settings-dropdown');
+
+// Utility to check if any overlay is open
+function isOverlayOpen() {
+  return !settingsDropdown.classList.contains('hidden');
+}
+
+// Open the settings overlay and lock header
+function showOverlay() {
+  closeOverlays();
+  settingsDropdown.classList.remove('hidden');
+  document.body.classList.add("overlay-open", "user-active");
+  clearTimeout(userActiveTimeout); // prevent auto-hide
+}
+
+// Close overlay
+function closeOverlays() {
+  settingsDropdown.classList.add('hidden');
+  document.body.classList.remove("overlay-open");
+
+  // Restart the auto-hide timer for the header
+  setTimeout(() => {
+    setUserActive();
+  }, 100); // slight delay ensures user sees header briefly after closing overlay
+}
+
+
+// Toggle on settings icon click
+settingsIcon.addEventListener('click', (e) => {
+  e.stopPropagation();
+  if (settingsDropdown.classList.contains('hidden')) {
+    showOverlay();
+  } else {
+    closeOverlays();
+  }
+});
+
+// Close overlay if clicked outside
+document.addEventListener('click', (e) => {
+  const clickedInsideSettings = settingsDropdown.contains(e.target) || settingsIcon.contains(e.target);
+  if (!clickedInsideSettings) {
+    closeOverlays();
+  }
+});
+
+// Auto-show header on user activity (disabled if overlay is open)
 let userActiveTimeout;
 function setUserActive() {
+  if (isOverlayOpen()) return; // prevent hiding when overlay is active
   document.body.classList.add("user-active");
   clearTimeout(userActiveTimeout);
   userActiveTimeout = setTimeout(() => {
     document.body.classList.remove("user-active");
-  }, 5000); // 5 seconds
+  }, 5000);
 }
 
-// Mouse or touch triggers UI
+// Detect user activity
 ["mousemove", "touchstart"].forEach(event =>
   document.addEventListener(event, setUserActive)
 );
 
+// Show header initially
+setUserActive();
+
+// DATE -----------------------------------------------------------------------------------------
+function updateDate() {
+  const dateElement = document.getElementById("dateDisplay");
+  const now = new Date(); // Device's local time
+
+  const day = String(now.getDate()).padStart(2, '0');
+  const month = now.toLocaleString('default', { month: 'long' }); // Full month name
+  const year = now.getFullYear();
+
+  dateElement.textContent = `${day} ${month} ${year}`;
+}
+
+function scheduleMidnightUpdate() {
+  const now = new Date();
+  const nextMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+  const msUntilMidnight = nextMidnight - now;
+
+  setTimeout(() => {
+    updateDate();
+    scheduleMidnightUpdate(); // Set again for the next day
+  }, msUntilMidnight);
+}
+
+updateDate();             // Initial load
+scheduleMidnightUpdate(); // Keep updating daily at midnight
