@@ -21,11 +21,18 @@
       <div class="header header-sticky fixed-top">
         <div class="container">
           <div class="row">
-            <div id="control-icons-toggle" class="control-icons d-flex align-items-center justify-content-center">
-              <!-- <i class="fa-solid fa-info-circle info-icon m-1 col-1 text-start" title="Info"></i> -->
-              <div class="col-md-10 col-9"></div>
-              <i class="fa-solid fa-gear settings-icon m-1 col-1 text-end" title="Settings"></i>
-              <i id="fullscreen-toggle" class="fa-solid fa-expand fullscreen-icon m-1 col-1 text-end" title="Toggle Fullscreen"></i>
+            <div id="control-icons-toggle" class="control-icons d-flex align-items-center justify-content-between">
+              <button class="download-scr col-md-3 col-4"> 
+                <a href="https://drive.google.com/file/d/1c3I-nN6Dw10J109ESuxpg332n53DknS7/view?usp=sharing" target="_blank"  class="d-flex align-items-center justify-content-center">
+                  <p class="mb-0 text-center me-2">Download as Screensaver</p>
+                  <i class="fa-solid fa-download"></i>
+                </a>
+              </button>
+              <div class="col-3 col-md-4"></div>
+              <div class="col-5 d-flex align-items-center justify-content-end">
+                <i class="fa-solid fa-gear settings-icon m-1 col-2 text-end" title="Settings"></i>
+                <i id="fullscreen-toggle" class="col-2 fa-solid fa-expand fullscreen-icon m-1 text-end" title="Toggle Fullscreen"></i>
+              </div>
             </div>
           </div>
         </div>
@@ -38,7 +45,7 @@
         <label class="toggle-switch d-flex align-items-center">
           <input type="checkbox" id="toggle-seconds-dots">
           <span class="slider"></span>
-          <p id="toggle-seconds-label" class="mt-1 mb-0 mb-0 me-2">Switch to Light Theme</p>
+          <p id="toggle-seconds-label" class="mb-0 mb-0">Switch to Light Theme</p>
         </label>
       </div>
     </div>
