@@ -50,6 +50,10 @@ body {
     width: 2rem;
   }
  
+  .overlay{
+    padding: 0.5rem 0.7rem 0.5rem 0rem;
+  }
+
   .overlay-content {
     font-size: 0.8rem;
   }
@@ -80,14 +84,17 @@ body {
   }
 
   .overlay-settings{
-    top: 2rem;
-    right: 14vw;
+    top: 3rem;
+    right: 13vw;
   }
 
   .date {
   font-size: 1rem;
   }
 
+  .download-scr a{
+    font-size: 0.7rem;
+  }
 }
 
 /*Medium Screen
@@ -118,6 +125,10 @@ body {
   .seconds-display {
     font-size: 2rem;
     width: 2rem;
+  }
+
+  .overlay{
+    padding: 0.7rem 0.7rem 0.7rem 0rem;
   }
  
   .overlay-content {
@@ -150,12 +161,16 @@ body {
   }
 
   .overlay-settings{
-    top: 3rem;
-    right: 15vw;
+    top: 4.5rem;
+    right: 16.8vw;
   }
 
   .date {
     font-size: 1.8rem;
+  }
+
+  .download-scr a{
+    font-size: 1rem;
   }
 
 }
@@ -189,6 +204,10 @@ body {
     width: 3rem;
   }
  
+  .overlay{
+    padding: 1rem 1rem 1rem 0.2rem;
+  }
+
   .overlay-content {
     font-size: 1.5rem;
   }
@@ -219,12 +238,16 @@ body {
   }
 
   .overlay-settings{
-    top: 4.2rem;
+    top: 6.2rem;
     right: 12vw;
   }
 
   .date {
   font-size: 2.5rem;
+  }
+
+  .download-scr a{
+    font-size: 1.5rem;
   }
 }
 
@@ -255,6 +278,10 @@ body {
   .seconds-display {
     font-size: 3rem;
     width: 3rem;
+  }
+
+  .overlay{
+    padding: 1rem 1rem 1rem 0.2rem;
   }
  
   .overlay-content {
@@ -287,12 +314,16 @@ body {
   }
 
   .overlay-settings{
-    top: 3rem;
+    top: 3.5rem;
     right: 13.5vw;
   }
 
   .date {
   font-size: 2.5rem;
+  }
+
+  .download-scr a{
+    font-size: 1rem;
   }
 
 }
@@ -502,19 +533,32 @@ body.dark-theme .overlay {
   color: #141414;
 }
 
-/* Light Theme */
+body.dark-theme .download-scr{
+  background-color: #c2c2c2;
+}
+
+body.dark-theme .download-scr a,
+body.dark-theme .download-scr a:hover{
+  color: #141414 !important;
+}
+
+body.dark-theme .download-scr:hover{
+  background-color: #9a9a9a;
+}
+
+/* ---------- Light Theme -------------- */
 body.light-theme {
   background-color: #dafff5;
 }
 
 body.light-theme .control-icons,
 body.light-theme footer{
-  color: #333;
+  color: #013637;
 }
 
 body.light-theme .header {
   background-color: #dafff5;
-  border-bottom: #333 2px solid;
+  border-bottom: #013637 2px solid;
 }
 
 body.light-theme .flip-card .bottom,
@@ -535,6 +579,19 @@ body.light-theme .date {
 body.light-theme .overlay {
   background-color: #013637;
   color: #ffffff;
+}
+
+body.light-theme .download-scr{
+  background-color: #013637;
+}
+
+body.light-theme .download-scr a,
+body.light-theme .download-scr a:hover{
+  color: #ffffff !important;
+}
+
+body.light-theme .download-scr:hover{
+  background-color: #045b5c;  
 }
 
 /* ------------------------------- DATE ------------------------------ */
@@ -589,7 +646,6 @@ body.overlay-open .control-icons {
 /* ---------------------- OVERLAY -------------------------- */
 .overlay {
   position: fixed;
-  padding: 0.7rem 0.7rem 0.7rem 0.4rem;
   border-radius: 10px;
   z-index: 1100;
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
@@ -600,12 +656,39 @@ body.overlay-open .control-icons {
   display: none !important;
 }
 
+/* ---------------- DOWNLOAD AS SCREENSAVER ----------------------- */
+a{
+  text-decoration: none !important;
+}
+
+a:hover{
+  text-decoration: none !important;
+}
+
+.download-scr{
+  background-color: #414141;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: none;
+}
+
+.download-scr a{
+  color: #ffffff !important;
+}
+
+.download-scr a:hover{
+  color: #ffffff !important;
+}
+
+.download-scr:hover{
+  background-color: #5d5d5d;
+}
+
 /* -----------------------FOOTER----------------------------------- */
 
 .hide-footer footer {
   display: none !important;
 }
-
 
 footer {
   position: fixed;
