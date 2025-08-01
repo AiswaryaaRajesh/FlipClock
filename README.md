@@ -9,3 +9,8 @@ With support for both light and dark themes, users can choose a visual style tha
 Whether on desktop or mobile, this clock provides an elegant, distraction-free way to stay connected with the current time and date.
 
 To download this screensaver and use it as your own -> https://drive.google.com/file/d/1c3I-nN6Dw10J109ESuxpg332n53DknS7/view?usp=sharing
+
+
+
+https://github.com/user-attachments/assets/cd531b86-baf5-498b-b24b-3ec696e37448
+
