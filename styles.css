@@ -1,7 +1,6 @@
 /* BASIC STYLES */
 body {
   margin: 0;
-  padding-bottom: 60px; 
 }
 
 .container-clock {
@@ -54,7 +53,7 @@ body {
     padding: 0.5rem 0.7rem 0.5rem 0rem;
   }
 
-  .overlay-content {
+  .overlay-content, .dropdown-menu p, .dropdown-menu a {
     font-size: 0.8rem;
   }
 
@@ -85,15 +84,11 @@ body {
 
   .overlay-settings{
     top: 3rem;
-    right: 13vw;
+    right: 14vw;
   }
 
   .date {
   font-size: 1rem;
-  }
-
-  .download-scr a{
-    font-size: 0.7rem;
   }
 }
 
@@ -131,7 +126,7 @@ body {
     padding: 0.7rem 0.7rem 0.7rem 0rem;
   }
  
-  .overlay-content {
+  .overlay-content, .dropdown-menu p, .dropdown-menu a  {
     font-size: 1rem;
   }
 
@@ -161,16 +156,12 @@ body {
   }
 
   .overlay-settings{
-    top: 4.5rem;
-    right: 16.8vw;
+    top: 4rem;
+    right: 10vw;
   }
 
   .date {
     font-size: 1.8rem;
-  }
-
-  .download-scr a{
-    font-size: 1rem;
   }
 
 }
@@ -208,7 +199,7 @@ body {
     padding: 1rem 1rem 1rem 0.2rem;
   }
 
-  .overlay-content {
+  .overlay-content, .dropdown-menu p, .dropdown-menu a  {
     font-size: 1.5rem;
   }
 
@@ -238,17 +229,14 @@ body {
   }
 
   .overlay-settings{
-    top: 6.2rem;
-    right: 12vw;
+    top: 4.5rem;
+    right: 10vw;
   }
 
   .date {
   font-size: 2.5rem;
   }
 
-  .download-scr a{
-    font-size: 1.5rem;
-  }
 }
 
 /*large screen */
@@ -284,7 +272,7 @@ body {
     padding: 1rem 1rem 1rem 0.2rem;
   }
  
-  .overlay-content {
+  .overlay-content, .dropdown-menu p, .dropdown-menu a  {
     font-size: 1rem;
   }
 
@@ -315,15 +303,11 @@ body {
 
   .overlay-settings{
     top: 3.5rem;
-    right: 13.5vw;
+    right: 9.4vw;
   }
 
   .date {
   font-size: 2.5rem;
-  }
-
-  .download-scr a{
-    font-size: 1rem;
   }
 
 }
@@ -519,8 +503,8 @@ body.dark-theme .flip-card .flip-bottom
   background: #414141;
 }
 
-body.dark-theme .separator{
-  color: #ffffff;
+body.dark-theme .separator, body.dark-theme .dropdown-menu a{
+  color: #ffffff !important;
 }
 
 body.dark-theme .seconds-display,
@@ -533,17 +517,17 @@ body.dark-theme .overlay {
   color: #141414;
 }
 
-body.dark-theme .download-scr{
-  background-color: #c2c2c2;
+body.dark-theme #downloadToggle{
+  background-color: #414141;
+  color: #ffffff;
 }
 
-body.dark-theme .download-scr a,
-body.dark-theme .download-scr a:hover{
-  color: #141414 !important;
+body.dark-theme #downloadToggle:hover, body.dark-theme .dropdown-menu{
+  background-color: #5d5d5d !important;
 }
 
-body.dark-theme .download-scr:hover{
-  background-color: #9a9a9a;
+body.dark-theme .dropdown-menu li:hover{
+  background-color: #767676;
 }
 
 /* ---------- Light Theme -------------- */
@@ -581,17 +565,21 @@ body.light-theme .overlay {
   color: #ffffff;
 }
 
-body.light-theme .download-scr{
+body.light-theme #downloadToggle{
   background-color: #013637;
+  color: #ffffff;
 }
 
-body.light-theme .download-scr a,
-body.light-theme .download-scr a:hover{
+body.light-theme #downloadToggle:hover, body.light-theme .dropdown-menu{
+  background-color: #095b5c !important;
+}
+
+body.light-theme .dropdown-menu li:hover{
+  background-color: #1e7c7d;
+}
+
+body.light-theme .dropdown-menu a{
   color: #ffffff !important;
-}
-
-body.light-theme .download-scr:hover{
-  background-color: #045b5c;  
 }
 
 /* ------------------------------- DATE ------------------------------ */
@@ -635,7 +623,6 @@ body.overlay-open .control-icons {
   pointer-events: auto;
 }
 
-
 /* ------------------FULLSCREEN --------------------------- */
 .fullscreen-icon,
 .settings-icon{
@@ -656,7 +643,7 @@ body.overlay-open .control-icons {
   display: none !important;
 }
 
-/* ---------------- DOWNLOAD AS SCREENSAVER ----------------------- */
+/* ---------------- DOWNLOAD DROPDOWN ----------------------- */
 a{
   text-decoration: none !important;
 }
@@ -665,24 +652,26 @@ a:hover{
   text-decoration: none !important;
 }
 
-.download-scr{
-  background-color: #414141;
-  padding: 0.5rem 1rem;
+#downloadToggle{
   border-radius: 5px;
+  padding: 0.5rem 1rem;
   border: none;
 }
 
-.download-scr a{
-  color: #ffffff !important;
+/* Hide dropdown by default */
+.dropdown-menu {
+  display: none;
+  z-index: 10;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  border-radius: 5px;
+  width: max-content;
 }
 
-.download-scr a:hover{
-  color: #ffffff !important;
+/* Show when active */
+.dropdown-menu.show {
+  display: block;
 }
 
-.download-scr:hover{
-  background-color: #5d5d5d;
-}
 
 /* -----------------------FOOTER----------------------------------- */
 
