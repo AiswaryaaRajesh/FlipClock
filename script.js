@@ -145,10 +145,41 @@ themeToggle.addEventListener("change", () => {
 const settingsIcon = document.querySelector('.settings-icon');
 const settingsDropdown = document.getElementById('settings-dropdown');
 
+// Drodpown Download -----------------------------------------------------
+const toggleBtn = document.getElementById('downloadToggle');
+const menu = document.getElementById('downloadMenu');
+
+toggleBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  menu.classList.toggle('show');
+
+  if (menu.classList.contains('show')) {
+    document.body.classList.add("overlay-open", "user-active");
+    clearTimeout(userActiveTimeout);
+  } else {
+    closeOverlays(); // treat closing dropdown as closing overlay
+  }
+});
+
+
+document.addEventListener('click', (e) => {
+  const clickedInsideDownload = menu.contains(e.target) || toggleBtn.contains(e.target);
+  const clickedInsideSettings = settingsDropdown.contains(e.target) || settingsIcon.contains(e.target);
+
+  // Close only if clicked outside both
+  if (!clickedInsideDownload && !clickedInsideSettings) {
+    closeOverlays();
+  }
+});
+
+
 // Utility to check if any overlay is open
 function isOverlayOpen() {
-  return !settingsDropdown.classList.contains('hidden');
+  const isSettingsOpen = !settingsDropdown.classList.contains('hidden');
+  const isDownloadMenuOpen = menu.classList.contains('show');
+  return isSettingsOpen || isDownloadMenuOpen;
 }
+
 
 // Open the settings overlay and lock header
 function showOverlay() {
@@ -161,14 +192,14 @@ function showOverlay() {
 // Close overlay
 function closeOverlays() {
   settingsDropdown.classList.add('hidden');
+  menu.classList.remove('show');
   document.body.classList.remove("overlay-open");
 
-  // Restart the auto-hide timer for the header
+  // Restart auto-hide timer
   setTimeout(() => {
     setUserActive();
-  }, 100); // slight delay ensures user sees header briefly after closing overlay
+  }, 100);
 }
-
 
 // Toggle on settings icon click
 settingsIcon.addEventListener('click', (e) => {
