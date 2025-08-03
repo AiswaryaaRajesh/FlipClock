@@ -19,21 +19,36 @@
 
     <header id="header-control-icons">
       <div class="header header-sticky fixed-top">
-        <div id="control-icons-toggle" class="control-icons d-flex align-items-center justify-content-between mx-4 mx-md-5">
-          <button class="download-scr col-md-3 col-5"> 
-            <a href="https://drive.google.com/file/d/1c3I-nN6Dw10J109ESuxpg332n53DknS7/view?usp=sharing" target="_blank"  class="d-flex align-items-center justify-content-center">
-              <p class="mb-0 text-center me-2">Download as Screensaver</p>
+        <div id="control-icons-toggle" class="control-icons d-flex align-items-center justify-content-between">
+
+          <!-- Dropdown download -->
+          <div class="dropdown download-dropdown col-md-3 col-4">
+            <button class="d-flex align-items-center justify-content-start ms-4" id="downloadToggle">
+              <p class="mb-0 text-center me-2">Download</p>
               <i class="fa-solid fa-download"></i>
-            </a>
-          </button>
-          <div class="col-2 col-md-3"></div>
-          <div class="col-5 col-md-6 d-flex align-items-center justify-content-end">
+            </button>
+            <ul class="dropdown-menu list-unstyled mt-1 ms-4 p-2" id="downloadMenu">
+              <li class="p-1 border-bottom">
+                <a href="https://drive.google.com/file/d/1c3I-nN6Dw10J109ESuxpg332n53DknS7/view?usp=sharing" target="_blank">Download as Screensaver <i class="fa-solid fa-download"></i></a>
+              </li>
+              <li class="p-1">
+                <a href="https://aiswaryaarajesh.github.io/FlipClockWidget/" target="_blank" class="me-2 mb-0">Download as App <i class="fa-solid fa-download"></i></a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-3 col-md-4"></div>
+
+          <div class="col-5 d-flex align-items-center justify-content-end">
             <i class="fa-solid fa-gear settings-icon m-1 col-2 text-end" title="Settings"></i>
             <i id="fullscreen-toggle" class="col-2 fa-solid fa-expand fullscreen-icon m-1 me-4 text-end" title="Toggle Fullscreen"></i>
           </div>
+
         </div>
       </div>
-    </header>    
+    </header>
+
+   
 
     <!-- Settings Dropdown -->
     <div id="settings-dropdown" class="overlay overlay-settings hidden">
@@ -77,5 +92,3 @@
 
   </body>
 </html>
-
-
